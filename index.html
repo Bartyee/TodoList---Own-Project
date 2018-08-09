@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+
+
+  <style>
+
+      :root{
+          --primary-color: #FF7F50;
+          --secondary-color: #FEFEE8;
+          --third-color: #787878;
+      }
+
+      *{
+          margin:0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+
+      html{
+          height: 100%;
+      }
+
+      body{
+          height: 100%;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .todo__main{
+          width: 60%;
+          height: auto;
+          background-color: var(--primary-color);
+          display: flex;
+          flex-wrap: wrap;
+          
+      }
+
+      .todoName{
+          width: 90%;
+          text-align: center;
+          height: 50px;
+      }
+
+      .addTodo--button{
+          background-color: var(--third-color);
+          border: solid 2px #000000;
+          width: 10%;
+          height: 50px;
+          cursor: pointer;
+      }
+
+      ul{
+          height: calc(100% - 50px);
+          list-style-type: none;
+          width: 100%;
+      }
+
+      li{
+          padding: 20px 0 0 10px;
+          font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          font-weight: 200;
+          width: 100%;
+          margin-top: 10px;
+          margin-bottom: 10px;
+          height: 10%;
+          background-color: #000000;
+          color: white;
+          font-size: 25px;
+      }
+      
+  </style>
+</head>
+<body>
+    <div class="todo__main">
+        <input class="todoName" type="text">
+        <button class="addTodo--button">Add</button>
+        <ul class="list">
+        </ul>
+    </div>
+  
+
+
+  <script>
+
+      var todoName = document.querySelector('.todoName');
+      var list = document.querySelector('.list');
+      var addTodoButton = document.querySelector('.addTodo--button');
+      addTodoButton.addEventListener('click',addTodo);
+
+      
+      function addTodo(){
+        if(todoName.value.length == 0 || todoName.value == 'Enter Something Todo Name!'){
+          todoName.value = 'Enter Something Todo Name!';
+      }
+      else{
+        var listItem = document.createElement("li");
+                var listItemText = document.createTextNode(todoName.value);
+                listItem.appendChild(listItemText);
+                list.appendChild(listItem);
+      }
+            
+       }
+
+    
+      
+      
+  </script>
+</body>
+</html>
