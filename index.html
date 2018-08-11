@@ -2,8 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JS Bin</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 
   <style>
@@ -30,12 +31,17 @@
           display: flex;
           justify-content: center;
           align-items: center;
+          flex-direction: column;
+      }
+
+      h1{
+          margin-bottom: 50px;
+          font-family: 'Open Sans', sans-serif;
+          font-size: 65px;
       }
 
       .todo__main{
           width: 60%;
-          height: auto;
-          background-color: var(--primary-color);
           display: flex;
           flex-wrap: wrap;
           
@@ -56,44 +62,59 @@
       }
 
       ul{
-          height: calc(100% - 50px);
           list-style-type: none;
           width: 100%;
+          height: 20px;
       }
+
+      ul li:nth-child(odd) {
+    background: orange;
+}
 
       li{
           padding: 5px 5px 0 10px;
-          font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
           font-weight: 200;
           width: 100%;
           margin-top: 10px;
           margin-bottom: 10px;
-          height: 10%;
           background-color: #C0C0C0;
           color: #000000;
           font-size: 25px;
-          border-radius: 25px;
+          font-family: 'Open Sans', sans-serif;
           cursor: pointer;
-        
-          
+          word-wrap: break-word;
+          text-align: center;
       }
 
       p{
           display: inline-block;
           text-decoration: none;
           width: 90%;
-          
+      }
+
+      .listItemText{
+          text-decoration: none;
       }
 
       .todoRemove{
           float: right;
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+          width: 20px;
           margin-top: 3px;
+          transition: 0.5s;
+      }
+
+      .todoRemove:hover{
+          color: white;
       }
 
       
   </style>
 </head>
 <body>
+    <h1>TODO - APP</h1>
     <div class="todo__main">
         <input class="todoName" placeholder="Enter Something Todo Name!"  type="text">
         <button class="addTodo--button">Add</button>
@@ -130,23 +151,27 @@
             listItem.appendChild(listItemText);
             list.appendChild(listItem);
             list.className = 'todoItem';
-            listItem.style.textDecoration = 'none';
-            var addTodoRemove = document.createElement('button');
-            addTodoRemove.className = 'todoRemove';
-            addTodoRemove.textContent = 'X';
-            listItem.appendChild(addTodoRemove);
+            var TodoRemove = document.createElement('button');
+            TodoRemove.className = 'todoRemove';
+            TodoRemove.textContent = 'X';
+            listItem.appendChild(TodoRemove);
             todoName.value = '';
 
             listItemText.addEventListener('click',function(){
-                if(listItemText.style.textDecoration == 'none'){
+                if(listItemText.style.textDecoration === 'none'){
                     listItemText.style.textDecoration = 'line-through';
                 }
                 else
                 {
                     listItemText.style.textDecoration = 'none';
                 }
-                
             });
+
+            TodoRemove.addEventListener('click',function(e){
+                this.parentNode.parentNode.removeChild(this.parentNode);
+            });
+
+            
 
       }
 
