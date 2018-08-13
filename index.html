@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JS Bin</title>
+  <title>TODO - APP</title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 
@@ -37,7 +37,7 @@
       h1{
           margin-bottom: 50px;
           font-family: 'Open Sans', sans-serif;
-          font-size: 65px;
+          font-size: auto;
       }
 
       .todo__main{
@@ -88,12 +88,7 @@
 
       p{
           display: inline-block;
-          text-decoration: none;
           width: 90%;
-      }
-
-      .listItemText{
-          text-decoration: none;
       }
 
       .todoRemove{
@@ -109,6 +104,13 @@
       .todoRemove:hover{
           color: white;
       }
+
+      @media (max-width: 478px){
+        .addTodo--button{
+              font-size: 0;
+          }
+      }
+
 
       
   </style>
@@ -127,64 +129,56 @@
   <script>
 
       var todoName = document.querySelector('.todoName');
-      var list = document.querySelector('.list');
+      var taskList = document.querySelector('.list');
       var addTodoButton = document.querySelector('.addTodo--button');
       
-
       addTodoButton.addEventListener('click',addTodo);
 
-      var i = 0;
-      
-      
-      
-
-      
       function addTodo(){
         if(todoName.value.length == 0 || todoName.value == 'Enter Something Todo Name!'){
           todoName.value = 'Enter Something Todo Name!';
         }
-      else{
+        else{
             var listItem = document.createElement("li");
+            listItem.className = 'listItem';
+
+
             var listItemText = document.createElement('p');
             listItemText.className = "listItemText";
             listItemText.textContent = todoName.value;
+            listItemText.style.textDecoration = 'none';
             listItem.appendChild(listItemText);
-            list.appendChild(listItem);
-            list.className = 'todoItem';
+            taskList.appendChild(listItem);
+            taskList.className = 'todoItem';
+
+
             var TodoRemove = document.createElement('button');
             TodoRemove.className = 'todoRemove';
             TodoRemove.textContent = 'X';
             listItem.appendChild(TodoRemove);
             todoName.value = '';
 
-            listItemText.addEventListener('click',function(){
-                if(listItemText.style.textDecoration === 'none'){
+
+            listItemText.addEventListener('click',completeTask);
+            TodoRemove.addEventListener('click',removeTodo);
+
+
+            function removeTodo(){
+                this.parentNode.parentNode.removeChild(this.parentNode);
+            }
+
+            function completeTask(){
+                if(listItemText.style.textDecoration == 'none'){
                     listItemText.style.textDecoration = 'line-through';
                 }
                 else
                 {
                     listItemText.style.textDecoration = 'none';
                 }
-            });
-
-            TodoRemove.addEventListener('click',function(e){
-                this.parentNode.parentNode.removeChild(this.parentNode);
-            });
-
-            
-
+            }
+        }
       }
 
-
-
-      
-      }
-
-     
-
-    
-      
-      
   </script>
 </body>
 </html>
