@@ -19,11 +19,11 @@ function addTodo(){
       listItemText.style.textDecoration = 'none';
       listItem.appendChild(listItemText);
       taskList.appendChild(listItem);
-      taskList.className = 'todoItem';
+      taskList.className = 'todoItems';
 
 
       var TodoRemove = document.createElement('button');
-      TodoRemove.className = 'todoRemove';
+      TodoRemove.className = 'todoRemove--button';
       TodoRemove.textContent = 'X';
       listItem.appendChild(TodoRemove);
       todoName.value = '';
